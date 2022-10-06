@@ -8,7 +8,7 @@ const share = mf.share;
 
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
-  path.join(__dirname, 'tsconfig.json'),
+  path.join(__dirname, '../../tsconfig.base.json'),
   [/* mapped paths to share */]);
 
 
@@ -29,14 +29,12 @@ module.exports = {
       exposes: {
         RegisterPageModule:
           "./src/app/modules/register/register-page.module.ts",
-          OtroPageModules:
-          "./src/app/modules/register/otro-page.module.ts",
       },
       shared: {
-        "@angular/core": { singleton: true, requiredVersion: '~12.2.0', eager: true },
-        "@angular/common": { singleton: true, requiredVersion: '~12.2.0', eager: true },
-        "@angular/router": { singleton: true, requiredVersion: '~12.2.0', eager: true },
-        "ngx-common-ui-lib": { singleton: true, requiredVersion: '0.0.13', eager: true},
+        "@angular/core": { singleton: true, requiredVersion: 'auto', eager: true },
+        "@angular/common": { singleton: true, requiredVersion: 'auto', eager: true },
+        "@angular/router": { singleton: true, requiredVersion: 'auto', eager: true },
+        "ngx-common-ui-lib": { singleton: true, requiredVersion: 'auto', eager: true},
         // "ngx-common-ui-lib": { singleton: true, requiredVersion: 'auto' }, // async loading (less bundle size if packages already presented in shell)
         // "ngx-common-ui-lib": { singleton: true, requiredVersion: '^0.0.13' }, // pass required lib version
         // "ngx-common-ui-lib": { eager: true, singleton: true }, // sync loading

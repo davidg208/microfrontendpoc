@@ -11,7 +11,7 @@ import { NgxCommonUiLibModule, NgxCommonUiLibService } from 'ngx-common-ui-lib';
 @NgModule({
   declarations: [
     RegisterPageComponent,
-    RegisterFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,

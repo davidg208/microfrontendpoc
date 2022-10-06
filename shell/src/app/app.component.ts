@@ -42,7 +42,7 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
       if (isLogged) {
         this.router.navigate(['/']);
       } else {
-        this.router.navigate(['/signup']);
+        this.router.navigate(['/']);
       }
     }
   }

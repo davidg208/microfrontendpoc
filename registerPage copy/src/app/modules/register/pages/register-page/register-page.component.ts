@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { RegisterFormValues } from '../../components/register-form/register-form.component';
-import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-register-page',
@@ -11,13 +9,22 @@ import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/route
 })
 export class RegisterPageComponent implements OnInit {
 
-  constructor(private auth: AuthService,  private router: Router) { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
   formSubmitted (values: RegisterFormValues) {
-    this.router.navigate(['/2']);
+    this.auth.register(values).subscribe((res) => {
+      localStorage.setItem('token', res.token);
+      const busEvent = new CustomEvent('app-event-bus', {
+        bubbles: true,
+        detail: {
+          eventType: 'auth-register'
+        }
+      });
+      dispatchEvent(busEvent);
+    });
   }
 
 }
